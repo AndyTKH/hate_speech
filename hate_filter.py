@@ -113,36 +113,35 @@ def main():
 
     full_page_background_image_base64()
 
-
-    if 'user_input' not in st.session_state:
-        st.session_state.user_input = "你怎么不回我短信，你这个傻瓜， 我要把你打残废. Screw you bitch, you are such a loser, and you are a dick head. Bye"
-        
-        st.write("mama")
-        #filtered_message = gfw.filter(st.session_state.user_input)
-        #display_filtered_message(filtered_message)
+    # Load the filter
+    gfw = load_filter()
 
     
-    # Text input with default message
+    if 'user_input' not in st.session_state:
+        st.session_state.user_input = "你怎么不回我短信，你这个傻瓜， 我要把你打残废. Screw you bitch, you are such a loser, and you are a dick head. Bye"
+        st.session_state.filtered_message = gfw.filter(default_message)  # Pre-filter the default message
+    
+    # Text input 
     user_input = st.text_area("Enter a message to filter:", value=st.session_state.user_input, height=150)
     st.session_state.user_input = user_input
 
-    # Load the filter
-    gfw = load_filter()
-    
     # Text input
     #user_input = st.text_area("Enter a message to filter:", height=150)
     
     
-    if st.button("Filter Message"):
+    if st.button("Filter Message") or 'filtered_message' not in st.session_state:
         if user_input:
             
-            filtered_message = gfw.filter(user_input)
+            st.session_state.filtered_message = gfw.filter(user_input)
            
             #st.write("Filtered Message:", filtered_message)
             display_filtered_message(filtered_message)
            
-        else:
-            st.warning("Please enter a message to filter.")
+    # Display the filtered message with custom styling, including default filtered result
+    if 'filtered_message' in st.session_state and st.session_state.filtered_message:
+        display_filtered_message(st.session_state.filtered_message)
+    else:
+        st.warning("Please enter a message to filter.")
 
 if __name__ == "__main__":
     main()

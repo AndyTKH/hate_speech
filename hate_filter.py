@@ -134,9 +134,6 @@ def main():
     
             st.session_state.filtered_message = gfw.filter(user_input)
            
-            #st.write("Filtered Message:", filtered_message)
-            display_filtered_message(st.session_state.filtered_message)
-           
     # Display the filtered message with custom styling, including default filtered result
     if 'filtered_message' in st.session_state and st.session_state.filtered_message:
         display_filtered_message(st.session_state.filtered_message)

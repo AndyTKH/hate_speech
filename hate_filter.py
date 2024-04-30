@@ -1,6 +1,6 @@
 import streamlit as st
 from pathlib import Path
-
+import base64
 
 # DFA Algorithm
 class DFAFilter():

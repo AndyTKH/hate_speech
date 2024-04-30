@@ -113,11 +113,21 @@ def main():
 
     full_page_background_image_base64()
 
+
+    if 'user_input' not in st.session_state:
+        st.session_state.user_input = "你怎么不回我短信，你这个傻瓜， 我要把你打残废. Screw you bitch, you are such a loser, and you are a dick head. Bye"
+
+    # Text input with default message
+    user_input = st.text_area("Enter a message to filter:", value=st.session_state.user_input, height=150)
+    st.session_state.user_input = user_input
+
     # Load the filter
     gfw = load_filter()
-
+    
     # Text input
-    user_input = st.text_area("Enter a message to filter:", height=150)
+    #user_input = st.text_area("Enter a message to filter:", height=150)
+    
+    
     if st.button("Filter Message"):
         if user_input:
             

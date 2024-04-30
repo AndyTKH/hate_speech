@@ -62,7 +62,8 @@ class DFAFilter():
 @st.cache_data
 def load_filter():
     gfw = DFAFilter()
-    path = "sensitive_words.txt"  # Update the path to your keywords file
+    #path = "sensitive_words.txt"  # Update the path to your keywords file
+    path = Path(__file__).parent /'data/sensitive_words.txt'
     gfw.parse(path)
     return gfw
 

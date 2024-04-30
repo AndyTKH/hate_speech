@@ -91,6 +91,10 @@ def main():
 
     st.title("Hate Speech Filter 🔎")
 
+    def get_base64_encoded_image(image_path):
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode('utf-8')
+    
     def full_page_background_image_base64():
         image_path = Path(__file__).parent/'image/wallpaper.jpg'
         #image_path = "wallpaper2.jpg"  # Update this path

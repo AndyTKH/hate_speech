@@ -119,7 +119,7 @@ def main():
     
     if 'user_input' not in st.session_state:
         st.session_state.user_input = "你怎么不回我短信，你这个傻瓜， 我要把你打残废. Screw you bitch, you are such a loser, and you are a dick head. Bye"
-        st.session_state.filtered_message = gfw.filter(default_message)  # Pre-filter the default message
+        st.session_state.filtered_message = gfw.filter(st.session_state.user_input)  # Pre-filter the default message
     
     # Text input 
     user_input = st.text_area("Enter a message to filter:", value=st.session_state.user_input, height=150)

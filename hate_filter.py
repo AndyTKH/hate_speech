@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 
+
 # DFA Algorithm
 class DFAFilter():
     def __init__(self):
@@ -89,6 +90,24 @@ def main():
     st.set_page_config(page_title="Hate Speech Filter", layout="wide", page_icon="🔍")
 
     st.title("Hate Speech Filter 🔎")
+
+    def full_page_background_image_base64():
+    image_path = Path(__file__).parent/'image/wallpaper.jpg'
+    #image_path = "wallpaper2.jpg"  # Update this path
+    encoded_image = get_base64_encoded_image(image_path)
+    css = f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{encoded_image}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }}
+        </style>
+    """
+    st.markdown(css, unsafe_allow_html=True)
+
+    full_page_background_image_base64()
 
     # Load the filter
     gfw = load_filter()

@@ -67,6 +67,23 @@ def load_filter():
     gfw.parse(path)
     return gfw
 
+def set_css():
+    st.markdown("""
+    <style>
+    .big-font {
+        font-size:20px !important;
+        font-family: Arial, sans-serif;
+        color: #4a4a4a;  /* You can change the color */
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+def display_filtered_message(message):
+    # Use Markdown with the custom style class
+    st.markdown(f'<p class="big-font">{message}</p>', unsafe_allow_html=True)
+
+
+
 # Main function for the Streamlit app
 def main():
     st.set_page_config(page_title="Hate Speech Filter", layout="wide", page_icon="🔍")
@@ -83,7 +100,8 @@ def main():
             
             filtered_message = gfw.filter(user_input)
            
-            st.write("Filtered Message:", filtered_message)
+            #st.write("Filtered Message:", filtered_message)
+            display_filtered_message(filtered_message)
            
         else:
             st.warning("Please enter a message to filter.")

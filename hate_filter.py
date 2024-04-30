@@ -131,11 +131,11 @@ def main():
     
     if st.button("Filter Message") or 'filtered_message' not in st.session_state:
         if user_input:
-            
+    
             st.session_state.filtered_message = gfw.filter(user_input)
            
             #st.write("Filtered Message:", filtered_message)
-            display_filtered_message(filtered_message)
+            display_filtered_message(st.session_state.filtered_message)
            
     # Display the filtered message with custom styling, including default filtered result
     if 'filtered_message' in st.session_state and st.session_state.filtered_message:
